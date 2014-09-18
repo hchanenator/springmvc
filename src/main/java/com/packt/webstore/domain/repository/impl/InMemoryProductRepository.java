@@ -19,14 +19,14 @@ public class InMemoryProductRepository implements ProductRepository {
 		Product productById = null;
 		
 		for(Product product : listOfProducts) {
-			if(product != null && product.getProductId().equalsIgnoreCase(productId)) {
+			if(product != null && product.getProductId() != null && product.getProductId().equalsIgnoreCase(productId)) {
 				productById = product;
 				break;
 			}
 		}
 		
 		if(productById == null) {
-			throw new IllegalArgumentException("No products found with the product id:" + productId);
+			throw new IllegalArgumentException("No products found with the product id: " + productId);
 		}
 		
 		return productById;

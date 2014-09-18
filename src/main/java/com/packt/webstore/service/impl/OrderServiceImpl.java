@@ -12,17 +12,17 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Autowired
 	private ProductRepository productRepository;
-	
+
 	@Override
 	public void processOrder(String productId, long quantity) {
 		Product productById = productRepository.getProductById(productId);
 		
-		if(productById.getUnitsInStock() < quantity) {
-			throw new IllegalArgumentException("Out of Stock.  Available units in stock " + productById.getUnitsInStock());
+		if (productById.getUnitsInStock() < quantity) {
+			throw new IllegalArgumentException("There is not enough inventory to fulfill the order.  Available units in stock: " + productById.getUnitsInStock());
 		}
 		
 		productById.setUnitsInStock(productById.getUnitsInStock() - quantity);
-		
+
 	}
 
 }
