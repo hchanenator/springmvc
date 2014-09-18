@@ -3,9 +3,12 @@ package com.packt.webstore.domain.repository.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.domain.repository.api.ProductRepository;
 
+@Repository
 public class InMemoryProductRepository implements ProductRepository {
 	
 	private List<Product> listOfProducts = new ArrayList<Product>();
