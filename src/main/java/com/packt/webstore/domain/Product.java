@@ -8,7 +8,7 @@ public class Product {
 	private String name;
 	private BigDecimal unitPrice;
 	private String description;
-	private String manfacturer;
+	private String manufacturer;
 	private String category;
 	private long unitsInStock;
 	private long unitsOnOrder;
@@ -84,15 +84,15 @@ public class Product {
 	/**
 	 * @return the manfacturer
 	 */
-	public String getManfacturer() {
-		return manfacturer;
+	public String getManufacturer() {
+		return manufacturer;
 	}
 
 	/**
 	 * @param manfacturer the manfacturer to set
 	 */
-	public void setManfacturer(String manfacturer) {
-		this.manfacturer = manfacturer;
+	public void setManufacturer(String manfacturer) {
+		this.manufacturer = manfacturer;
 	}
 
 	/**
@@ -180,7 +180,7 @@ public class Product {
 		result = prime * result
 				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result
-				+ ((manfacturer == null) ? 0 : manfacturer.hashCode());
+				+ ((manufacturer == null) ? 0 : manufacturer.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result
 				+ ((productId == null) ? 0 : productId.hashCode());
@@ -220,10 +220,10 @@ public class Product {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (manfacturer == null) {
-			if (other.manfacturer != null)
+		if (manufacturer == null) {
+			if (other.manufacturer != null)
 				return false;
-		} else if (!manfacturer.equals(other.manfacturer))
+		} else if (!manufacturer.equals(other.manufacturer))
 			return false;
 		if (name == null) {
 			if (other.name != null)

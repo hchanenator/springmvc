@@ -16,7 +16,7 @@ public class ProductController {
 		Product iPhone = new Product("P1234", "iPhone 5S", new BigDecimal(500));
 		iPhone.setDescription("Apple iPhone 5S - simply, awesome.");
 		iPhone.setCategory("Smart Phone");
-		iPhone.setManfacturer("Apple");
+		iPhone.setManufacturer("Apple");
 		iPhone.setUnitsInStock(1000);
 		
 		model.addAttribute("product", iPhone);
