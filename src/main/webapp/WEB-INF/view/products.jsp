@@ -22,16 +22,18 @@
 
 	<section class="container">
 	<div class="row">
-		<div class="col-am-6 col-md-3" style="padding-bottom: 15px">
-			<div class="thumbnail">
-				<div class="caption">
-					<h3>${product.name }</h3>
-					<p>${product.description }</p>
-					<p>${product.unitPrice }</p>
-					<p>Available ${product.unitsInStock }</p>
+		<c:forEach items="${products}" var="product">
+			<div class="col-am-6 col-md-3" style="padding-bottom: 15px">
+				<div class="thumbnail">
+					<div class="caption">
+						<h3>${product.name }</h3>
+						<p>${product.description }</p>
+						<p>\$${product.unitPrice }</p>
+						<p>Available ${product.unitsInStock }</p>
+					</div>
 				</div>
 			</div>
-		</div>
+		</c:forEach>
 	</div>
 	</section>
 

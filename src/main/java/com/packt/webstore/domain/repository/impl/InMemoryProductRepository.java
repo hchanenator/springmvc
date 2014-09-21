@@ -37,11 +37,15 @@ public class InMemoryProductRepository implements ProductRepository {
 		latitude.setManufacturer("Dell");
 		latitude.setUnitsInStock(500);
 		
+		listOfProducts.add(iPhone6);
+		listOfProducts.add(galaxyS5);
+		listOfProducts.add(latitude);
+		
 	}
 
 	public List<Product> getAllProducts() {
 		// TODO Auto-generated method stub
-		return null;
+		return listOfProducts;
 	}
 	
 	public Product getProductById(String productId) {

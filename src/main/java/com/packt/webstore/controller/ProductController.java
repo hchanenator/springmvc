@@ -2,24 +2,23 @@ package com.packt.webstore.controller;
 
 import java.math.BigDecimal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.packt.webstore.domain.Product;
+import com.packt.webstore.domain.repository.api.ProductRepository;
 
 @Controller
 public class ProductController {
 	
+	@Autowired
+	ProductRepository productRepository;
+	
 	@RequestMapping("/products")
 	public String list(Model model) {
-		Product iPhone = new Product("P1234", "iPhone 5S", new BigDecimal(500));
-		iPhone.setDescription("Apple iPhone 5S - simply, awesome.");
-		iPhone.setCategory("Smart Phone");
-		iPhone.setManufacturer("Apple");
-		iPhone.setUnitsInStock(1000);
-		
-		model.addAttribute("product", iPhone);
+		model.addAttribute("products", productRepository.getAllProducts());
 		
 		return "products";
 	}
