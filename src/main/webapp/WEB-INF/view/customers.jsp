@@ -22,7 +22,7 @@
 
 	<section class="container">
 	<div class="row">
-		<c:forEach items="${customers}" var="product">
+		<c:forEach items="${customers}" var="customer">
 			<div class="col-am-6 col-md-3" style="padding-bottom: 15px">
 				<div class="thumbnail">
 					<div class="caption">
