@@ -22,7 +22,7 @@ public class InMemoryProductRepository implements ProductRepository {
 	}
 	
 	private void createProducts() {
-		Product iPhone6 = new Product("P1234", "iPhone6", new BigDecimal("499.99"));
+		Product iPhone6 = new Product("P1234", "iPhone 6", new BigDecimal("499.99"));
 		iPhone6.setDescription("The latest and greatest!");
 		iPhone6.setCategory("SmartPhone");
 		iPhone6.setManufacturer("Apple");
@@ -40,9 +40,24 @@ public class InMemoryProductRepository implements ProductRepository {
 		latitude.setManufacturer("Dell");
 		latitude.setUnitsInStock(500);
 		
+		Product satellite = new Product("P9870", "Toshiba Satellite 8150", new BigDecimal("1299.99"));
+		satellite.setDescription("An awesome gaming machine!");
+		satellite.setCategory("Laptop");
+		satellite.setManufacturer("Toshiba");
+		satellite.setUnitsInStock(300);
+		
+		Product iPad = new Product("P1432", "iPad Mini Air - 32 GB", new BigDecimal("799.99"));
+		iPad.setDescription("Might as well be called an iPhone!");
+		iPad.setCategory("Tablet");
+		iPad.setManufacturer("Apple");
+		iPad.setUnitsInStock(750);
+		
+		
 		listOfProducts.add(iPhone6);
 		listOfProducts.add(galaxyS5);
 		listOfProducts.add(latitude);
+		listOfProducts.add(satellite);
+		listOfProducts.add(iPad);
 		
 	}
 
