@@ -1,5 +1,6 @@
 package com.packt.webstore.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -47,5 +48,21 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productRepository.getProductsByManufacturer(manufacturer);
 	}
+
+	@Override
+	public List<Product> getProductsByMultpleFilters(String category,
+			Map<String, List<String>> filterParams, String manufacturer) {
+		Set listOfProducts = new HashSet<Product>();
+		
+		listOfProducts.add(this.getProductsByCategory(category));
+		listOfProducts.add(this.getProductsByFilter(filterParams));
+		listOfProducts.add(this.getProductsByManufacturer(manufacturer));
+		
+		
+		
+		return null;
+	}
+	
+	
 
 }

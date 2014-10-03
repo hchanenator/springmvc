@@ -52,12 +52,27 @@ public class InMemoryProductRepository implements ProductRepository {
 		iPad.setManufacturer("Apple");
 		iPad.setUnitsInStock(750);
 		
+		Product nexus = new Product("P1111", "Google Nexus tablet", new BigDecimal("259.99"));
+		nexus.setDescription("Simple tablet");
+		nexus.setCategory("Tablet");
+		nexus.setManufacturer("Google");
+		nexus.setUnitsInStock(400);
+		
+		Product chromebook = new Product("P1120", "Google Chromebook", new BigDecimal("159.99"));
+		chromebook.setDescription("Simple laptop");
+		chromebook.setCategory("Laptop");
+		chromebook.setManufacturer("Google");
+		chromebook.setUnitsInStock(999);
+		
+		
 		
 		listOfProducts.add(iPhone6);
 		listOfProducts.add(galaxyS5);
 		listOfProducts.add(latitude);
 		listOfProducts.add(satellite);
 		listOfProducts.add(iPad);
+		listOfProducts.add(nexus);
+		listOfProducts.add(chromebook);
 		
 	}
 
@@ -121,15 +136,8 @@ public class InMemoryProductRepository implements ProductRepository {
 				productsByCategory.addAll(this.getProductsByCategory(category));
 			}
 		}
-		
-		if (criteria.contains("manufacturer")) {
-			for(String manufacturer : filterParams.get("manufacturer")) {
-				productsByManufacturer.addAll(this.getProductsByManufacturer(manufacturer));
-			}
-		}
-		
+				
 		productsByCategory.retainAll(productsByBrand);
-//		productsByManufacturer.retainAll(productsByCategory);
 		return productsByCategory;
 	}
 
