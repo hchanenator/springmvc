@@ -1,7 +1,10 @@
 package com.packt.webstore.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,30 +14,33 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.packt.webstore.domain.Product;
 import com.packt.webstore.service.api.ProductService;
 
 @Controller
 @RequestMapping("/products")
 public class ProductController {
-	
+
 	@Autowired
 	ProductService productService;
-	
+
 	@RequestMapping
 	public String list(Model model) {
 		model.addAttribute("products", productService.getAllProducts());
-		
+
 		return "products";
 	}
-	
+
 	@RequestMapping("/all")
 	public String allProducts(Model model) {
 		model.addAttribute("products", productService.getAllProducts());
 		return "products";
 	}
-	
+
 	/**
-	 * Getting by Category
+	 * Getting by Category Example URL:
+	 * http://localhost:8080/webstore/products/smartphone
+	 * 
 	 * @param model
 	 * @param productCategory
 	 * @return
@@ -44,50 +50,102 @@ public class ProductController {
 		model.addAttribute("products", productService.getProductsByCategory(productCategory));
 		return "products";
 	}
-	
+
 	/**
-	 * Using a MatrixVariable 
+	 * Using a MatrixVariable Example URL:
+	 * http://localhost:8080/webstore/products/filter/ByCriteria;brand=apple,
+	 * dell;category=laptop
+	 * 
 	 * @param filterParams
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/filter/{ByCriteria}")
-	public String getProductsByFilter(@MatrixVariable(pathVar="ByCriteria") Map<String, List<String>> filterParams, Model model) {
+	public String getProductsByFilter(@MatrixVariable(pathVar = "ByCriteria") Map<String, List<String>> filterParams,
+			Model model) {
 		model.addAttribute("products", productService.getProductsByFilter(filterParams));
 		return "products";
 	}
-	
+
 	/**
-	 * Retrieving via HTTP GET
+	 * Retrieving via HTTP GET Example URL:
+	 * http://localhost:8080/webstore/products/product?id=P7888
+	 * 
 	 * @param productId
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/product")
-	public String getProductById(@RequestParam("id") String productId, Model model) {
+	public String getProductById(Model model, @RequestParam("id") String productId) {
 		model.addAttribute("product", productService.getProductById(productId));
 		return "product";
 	}
-	
+
+	/**
+	 * Example URL: 
+	 *   http://localhost:8080/webstore/products/pricefilter/price;low=150;high=400
+	 *   
+	 * @param model
+	 * @param productCategory
+	 * @param filterParams
+	 * @return
+	 */
+	@RequestMapping("/pricefilter/{price}")
+	public String filterProductsByPrice(Model model,
+			@MatrixVariable(pathVar = "price") Map<String, List<String>> priceRange) {
+
+		model.addAttribute("products", productService.getProductsByPriceFilter(priceRange));
+		return "products";
+
+	}
+
 	/**
 	 * Example URL:
-	 * 	http://localhost:8080/webstore/products/tablet/price;low=200;high=400?manufacturer=Google
+	 *   http://localhost:8080/webstore/products/filter/tablet/price;low=200;high=400
 	 * 
 	 * @param model
 	 * @param productCategory
 	 * @param filterParams
 	 * @return
 	 */
-	@RequestMapping("/{category}/{price}/")
-	public String filterProducts(Model model, @PathVariable("category") String productCategory, 
-			@MatrixVariable(pathVar = "price") Map<String, List<String>> price,
-			@RequestParam("manufacturer") String manufacturer) {
-		
-		model.addAttribute("products", productService.getProductsByManufacturer(manufacturer));
-		return "products";
-		
-	}
+	@RequestMapping("filter/{category}/{price}")
+	public String filterProductsByCategoryAndPrice(Model model, @PathVariable("category") String productCategory,
+			@MatrixVariable(pathVar = "price") Map<String, List<String>> priceRange) {
 
+		List<Product> finalResults = new ArrayList<Product>();
+
+		finalResults = productService.getProductsByCategory(productCategory);
+		finalResults.retainAll(productService.getProductsByPriceFilter(priceRange));
+
+		model.addAttribute("products", finalResults);
+		return "products";
+
+	}
+	
+	/**
+	 * Example URL:
+	 *   http://localhost:8080/webstore/products/laptop/price;low=200;high=8000?manufacturer=apple
+	 * 
+	 * @param model
+	 * @param productCategory
+	 * @param filterParams
+	 * @return
+	 */
+	@RequestMapping("/{category}/{price}")
+	public String filterProductsCategoryPriceManufacturer(Model model, @PathVariable("category") String productCategory,
+			@MatrixVariable(pathVar = "price") Map<String, List<String>> priceRange,
+			@RequestParam("manufacturer") String manufacturer) {
+
+		List<Product> finalResults = new ArrayList<Product>();
+
+		finalResults = productService.getProductsByCategory(productCategory);
+		finalResults.retainAll(productService.getProductsByPriceFilter(priceRange));
+		finalResults.retainAll(productService.getProductsByManufacturer(manufacturer));
+
+		model.addAttribute("products", finalResults);
+		return "products";
+
+	}
 	
 
 }

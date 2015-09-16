@@ -31,38 +31,40 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Set<Product> getProductsByFilter(
-			Map<String, List<String>> filterParams) {
+	public Set<Product> getProductsByFilter(Map<String, List<String>> filterParams) {
 
 		return productRepository.getProductsByFilter(filterParams);
 	}
 
 	@Override
 	public Product getProductById(String productId) {
-		
+
 		return productRepository.getProductById(productId);
 	}
 
 	@Override
 	public List<Product> getProductsByManufacturer(String manufacturer) {
-		
+
 		return productRepository.getProductsByManufacturer(manufacturer);
+	}
+	
+	
+	@Override
+	public Set<Product> getProductsByPriceFilter(Map<String, List<String>> priceFilterParams) {
+		
+		return productRepository.getProductsByPriceFilter(priceFilterParams);
 	}
 
 	@Override
-	public List<Product> getProductsByMultpleFilters(String category,
-			Map<String, List<String>> filterParams, String manufacturer) {
+	public List<Product> getProductsByMultpleFilters(String category, Map<String, List<String>> filterParams,
+			String manufacturer) {
 		Set listOfProducts = new HashSet<Product>();
-		
+
 		listOfProducts.add(this.getProductsByCategory(category));
 		listOfProducts.add(this.getProductsByFilter(filterParams));
 		listOfProducts.add(this.getProductsByManufacturer(manufacturer));
-		
-		
-		
+
 		return null;
 	}
-	
-	
 
 }

@@ -40,7 +40,7 @@ public class InMemoryProductRepository implements ProductRepository {
 		latitude.setManufacturer("Dell");
 		latitude.setUnitsInStock(500);
 
-		Product satellite = new Product("P9870", "Toshiba Satellite 8150", new BigDecimal("1299.99"));
+		Product satellite = new Product("P9870", "Toshiba W50 Laptop", new BigDecimal("3026.99"));
 		satellite.setDescription("An awesome gaming machine!");
 		satellite.setCategory("Laptop");
 		satellite.setManufacturer("Toshiba");
@@ -63,6 +63,12 @@ public class InMemoryProductRepository implements ProductRepository {
 		chromebook.setCategory("Laptop");
 		chromebook.setManufacturer("Google");
 		chromebook.setUnitsInStock(999);
+		
+		Product macbookpro = new Product("P7888", "Apple MacBook Pro", new BigDecimal("3299.00"));
+		macbookpro.setDescription("15-inch Retina display w/512GB SSD, 8GB RAM, i7 + Turbo Boost to 4.0GHz.  Nuff said.");
+		macbookpro.setCategory("Laptop");
+		macbookpro.setManufacturer("Apple");
+		macbookpro.setUnitsInStock(120);
 
 		listOfProducts.add(iPhone6);
 		listOfProducts.add(galaxyS5);
@@ -71,6 +77,7 @@ public class InMemoryProductRepository implements ProductRepository {
 		listOfProducts.add(iPad);
 		listOfProducts.add(nexus);
 		listOfProducts.add(chromebook);
+		listOfProducts.add(macbookpro);
 
 	}
 
@@ -113,7 +120,6 @@ public class InMemoryProductRepository implements ProductRepository {
 	public Set<Product> getProductsByFilter(Map<String, List<String>> filterParams) {
 		Set<Product> productsByBrand = new HashSet<Product>();
 		Set<Product> productsByCategory = new HashSet<Product>();
-		Set<Product> productsByManufacturer = new HashSet<Product>();
 
 		Set<String> criteria = filterParams.keySet();
 
@@ -132,7 +138,7 @@ public class InMemoryProductRepository implements ProductRepository {
 				productsByCategory.addAll(this.getProductsByCategory(category));
 			}
 		}
-
+		
 		productsByCategory.retainAll(productsByBrand);
 		return productsByCategory;
 	}
@@ -149,5 +155,41 @@ public class InMemoryProductRepository implements ProductRepository {
 
 		return productsByManufacturer;
 	}
+
+	@Override
+	public Set<Product> getProductsByPriceFilter(Map<String, List<String>> priceFilterParams) {
+		Set<Product> productsByPriceRangeLow = new HashSet<Product>();
+		Set<Product> productsByPriceRange = new HashSet<Product>();
+		
+		Set<String> criteria = priceFilterParams.keySet();
+		
+		if (criteria.contains("low")) {
+			for (String lowPrice : priceFilterParams.get("low")) {
+				BigDecimal low = new BigDecimal(lowPrice);
+				for (Product product : listOfProducts) {
+					if (product.getUnitPrice().compareTo(low) > 0) {
+						productsByPriceRangeLow.add(product);
+					}
+				}
+			}
+		}
+		
+		if (criteria.contains("high")) {
+			for (String highPrice : priceFilterParams.get("high")) {
+				BigDecimal high = new BigDecimal(highPrice);
+				for (Product product : listOfProducts) {
+					if (product.getUnitPrice().compareTo(high) < 0) {
+						productsByPriceRange.add(product);						
+					}
+				}
+			}
+		}
+		
+		productsByPriceRange.retainAll(productsByPriceRangeLow);
+		
+		return productsByPriceRange;
+	}
+	
+	
 
 }

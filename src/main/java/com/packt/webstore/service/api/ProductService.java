@@ -18,6 +18,8 @@ public interface ProductService {
 	
 	List<Product> getProductsByManufacturer(String manufacturer);
 	
+	Set<Product> getProductsByPriceFilter(Map<String, List<String>> priceFilterParams);
+	
 	List<Product> getProductsByMultpleFilters(String category, Map<String, List<String>> filterParams, String manufacturer);
 
 }
