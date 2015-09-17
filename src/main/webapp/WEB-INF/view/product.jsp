@@ -20,6 +20,11 @@ bootstrap.min.css">
 	<section class="container">
 		<div class="row">
 			<div class="col-md-5">
+				<img
+					src="<c:url value="/resource/images/${product.productId}.jpg"></c:url>"
+					alt="image" style="width: 100%" />
+			</div>
+			<div class="col-md-5">
 				<h3>${product.name}</h3>
 				<p>${product.description}</p>
 				<p>
@@ -39,8 +44,7 @@ bootstrap.min.css">
 				<p>
 					<a href=" <spring:url value="/products" />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>back
-					</a> 
-					<a href="#" class="btn btn-warning btn-large"> <span
+					</a> <a href="#" class="btn btn-warning btn-large"> <span
 						class="glyphicon-shopping-cart glyphicon"> </span> Order Now
 					</a>
 				</p>
