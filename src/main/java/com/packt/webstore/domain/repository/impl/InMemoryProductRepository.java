@@ -40,7 +40,7 @@ public class InMemoryProductRepository implements ProductRepository {
 		latitude.setManufacturer("Dell");
 		latitude.setUnitsInStock(500);
 
-		Product satellite = new Product("P9870", "Toshiba W50 Laptop", new BigDecimal("3026.99"));
+		Product satellite = new Product("P9870", "Toshiba Tecra R950 Laptop", new BigDecimal("3026.99"));
 		satellite.setDescription("An awesome gaming machine!");
 		satellite.setCategory("Laptop");
 		satellite.setManufacturer("Toshiba");
