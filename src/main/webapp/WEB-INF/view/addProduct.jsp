@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,8 +25,7 @@
 		<fieldset>
 			<legend>Add new product</legend>
 			<div class="form-group">
-				<label class="control-label col-lg-2 col-lg-2" for="productId">Product
-					ID</label>
+				<label class="control-label col-lg-2 col-lg-2" for="productId"><spring:message code="addProduct.form.productId.label"/></label>
 				<div class="col-lg-10">
 					<form:input id="productId" path="productId" type="text"
 						class="form:input-large" />
