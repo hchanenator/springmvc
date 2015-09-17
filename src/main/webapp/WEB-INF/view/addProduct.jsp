@@ -83,21 +83,6 @@
 						class="form:input-large" />
 				</div>
 			</div>
-			
-			<div class="form-group">
-					<label class="control-label col-lg-2" for="unitsOnOrder">Units On
-						Order</label>
-					<div class="col-lg-10">
-						<form:input id="unitsOnOrder" path="unitsOnOrder" type="text" class="form:input-large"/>
-					</div>
-				</div>
-
-			<div class="form-group">
-				<label class="control-label col-lg-2" for="discontinued">Discontinued</label>
-				<div class="col-lg-10">
-					<form:checkbox id="discontinued" path="discontinued" />
-				</div>
-			</div>
 
 			<div class="form-group">
 				<label class="control-label col-lg-2" for="condition">Condition</label>
