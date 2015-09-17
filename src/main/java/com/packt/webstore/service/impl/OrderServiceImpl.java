@@ -14,14 +14,14 @@ public class OrderServiceImpl implements OrderService {
 	private ProductRepository productRepository;
 
 	@Override
-	public void processOrder(String productId, long quantity) {
+	public void processOrder(String productId, long count) {
 		Product productById = productRepository.getProductById(productId);
 		
-		if (productById.getUnitsInStock() < quantity) {
+		if (productById.getUnitsInStock() < count) {
 			throw new IllegalArgumentException("There is not enough inventory to fulfill the order.  Available units in stock: " + productById.getUnitsInStock());
 		}
 		
-		productById.setUnitsInStock(productById.getUnitsInStock() - quantity);
+		productById.setUnitsInStock(productById.getUnitsInStock() - count);
 
 	}
 

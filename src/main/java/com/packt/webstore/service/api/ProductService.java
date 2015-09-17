@@ -22,4 +22,6 @@ public interface ProductService {
 	
 	List<Product> getProductsByMultpleFilters(String category, Map<String, List<String>> filterParams, String manufacturer);
 
+	void addProduct(Product product);
+	
 }

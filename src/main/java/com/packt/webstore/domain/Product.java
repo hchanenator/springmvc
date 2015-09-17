@@ -12,7 +12,7 @@ public class Product {
 	private String category;
 	private long unitsInStock;
 	private long unitsOnOrder;
-	private boolean active;
+	private boolean discontinued;
 	private String condition;
 	
 	public Product() {
@@ -140,15 +140,15 @@ public class Product {
 	/**
 	 * @return the active
 	 */
-	public boolean isActive() {
-		return active;
+	public boolean isDiscontinued() {
+		return discontinued;
 	}
 
 	/**
 	 * @param active the active to set
 	 */
-	public void setActive(boolean active) {
-		this.active = active;
+	public void setDiscontinued(boolean active) {
+		this.discontinued = active;
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class Product {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (active ? 1231 : 1237);
+		result = prime * result + (discontinued ? 1231 : 1237);
 		result = prime * result
 				+ ((category == null) ? 0 : category.hashCode());
 		result = prime * result
@@ -203,7 +203,7 @@ public class Product {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		if (active != other.active)
+		if (discontinued != other.discontinued)
 			return false;
 		if (category == null) {
 			if (other.category != null)

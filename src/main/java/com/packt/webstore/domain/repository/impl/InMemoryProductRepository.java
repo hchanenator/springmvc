@@ -190,6 +190,8 @@ public class InMemoryProductRepository implements ProductRepository {
 		return productsByPriceRange;
 	}
 	
-	
+	public void addProduct(Product product) {
+		listOfProducts.add(product);
+	}
 
 }
