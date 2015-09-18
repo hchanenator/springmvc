@@ -12,6 +12,9 @@
 
 	<mvc:interceptors>
 		<bean class="com.packt.webstore.interceptor.PerformanceMonitorInterceptor" />
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="language" />
+		</bean>
 	</mvc:interceptors>
 
 
@@ -59,5 +62,10 @@
 				</property>
 			</bean>
 		</constructor-arg>
+	</bean>
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en" />
 	</bean>
 </beans>
