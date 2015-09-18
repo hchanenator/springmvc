@@ -18,6 +18,7 @@ public class Product {
 	private String condition;
 	
 	private MultipartFile productImage;
+	private MultipartFile productManual;
 
 
 	public Product() {
@@ -179,7 +180,16 @@ public class Product {
 		this.productImage = productImage;
 	}
 	
+	
+	public MultipartFile getProductManual() {
+		return productManual;
+	}
 
+	public void setProductManual(MultipartFile productManual) {
+		this.productManual = productManual;
+	}
+
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */

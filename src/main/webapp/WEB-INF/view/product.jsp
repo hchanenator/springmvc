@@ -42,6 +42,9 @@ bootstrap.min.css">
 				</p>
 				<h4>\$${product.unitPrice} USD</h4>
 				<p>
+				<a href="<c:url value="/resource/pdf/${product.productId}.pdf"></c:url>">Manual</a>
+				</p>
+				<p>
 					<a href=" <spring:url value="/products" />" class="btn btn-default">
 						<span class="glyphicon-hand-left glyphicon"></span>back
 					</a> <a href="#" class="btn btn-warning btn-large"> <span

@@ -190,6 +190,8 @@ public class ProductController {
 		}
 		
 		MultipartFile productImage = newProduct.getProductImage();
+		MultipartFile productManual = newProduct.getProductManual();
+		
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		
 		if (productImage != null && !productImage.isEmpty()) {
@@ -200,6 +202,15 @@ public class ProductController {
 			}
 		}
 		
+		if (productManual != null && !productManual.isEmpty()) {
+			try {
+				productManual.transferTo(new File(rootDirectory + "resources\\pdf\\" + newProduct.getProductId() + ".pdf"));
+			} catch (Exception e) {
+				throw new RuntimeException("Product Manual saving failed", e);
+			}
+		}
+				
+		
 		productService.addProduct(newProduct);
 		return "redirect:/products";
 	}
@@ -207,7 +218,7 @@ public class ProductController {
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder) {
 		binder.setDisallowedFields("unitsOnOrder", "discontinued");
-		binder.setAllowedFields("productId","name","unitPrice","description","manufacturer","category","unitsInStock", "condition", "productImage");
+		binder.setAllowedFields("productId","name","unitPrice","description","manufacturer","category","unitsInStock", "condition", "productImage", "productManual");
 	}
 
 }

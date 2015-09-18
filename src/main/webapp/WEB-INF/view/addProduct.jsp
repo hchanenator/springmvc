@@ -106,6 +106,12 @@
 			</div>
 
 			<div class="form-group">
+				<label class="control-label col-lg-2" for="productImage"><spring:message
+						code="addProduct.form.productManual.label" /> </label>
+						<form:input id="productManual" path="productManual" type="file" class="form:input-large"/>
+			</div>
+			
+			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
 					<input type="submit" id="btnAdd" class="btn btn-primary"
 						value="Add">
