@@ -46,7 +46,7 @@ bootstrap.min.css">
 				</p>
 				<p>
 					<a href=" <spring:url value="/products" />" class="btn btn-default">
-						<span class="glyphicon-hand-left glyphicon"></span>back
+						<span class="glyphicon-hand-left glyphicon"></span> Back
 					</a> <a href="#" class="btn btn-warning btn-large"> <span
 						class="glyphicon-shopping-cart glyphicon"> </span> Order Now
 					</a>

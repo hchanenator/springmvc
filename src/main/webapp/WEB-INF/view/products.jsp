@@ -38,7 +38,7 @@
 							<a
 								href=" <spring:url value="/products/product?id=${product.productId}" />"
 								class="btn btn-primery"> <span
-								class="glyphicon-info-sign glyphicon"></span>Details
+								class="glyphicon-info-sign glyphicon"></span> Details
 							</a>
 						</p>
 					</div>

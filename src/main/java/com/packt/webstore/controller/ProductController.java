@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,8 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.packt.webstore.domain.Product;
+import com.packt.webstore.exception.NoProductFoundException;
+import com.packt.webstore.exception.ProductNotFoundException;
 import com.packt.webstore.service.api.ProductService;
 
 @Controller
@@ -57,6 +61,12 @@ public class ProductController {
 	 */
 	@RequestMapping("/{category}")
 	public String getProductsByCategory(Model model, @PathVariable("category") String productCategory) {
+		List<Product> products = productService.getProductsByCategory(productCategory);
+		
+		if (null == products || products.isEmpty()) {
+			throw new NoProductFoundException();
+		}
+		
 		model.addAttribute("products", productService.getProductsByCategory(productCategory));
 		return "products";
 	}
@@ -215,10 +225,31 @@ public class ProductController {
 		return "redirect:/products";
 	}
 	
+	/**
+	 * For some security.  Defines which fields can be bound (whitelist), and which
+	 * ones cannot.
+	 * @param binder
+	 */
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder) {
 		binder.setDisallowedFields("unitsOnOrder", "discontinued");
 		binder.setAllowedFields("productId","name","unitPrice","description","manufacturer","category","unitsInStock", "condition", "productImage", "productManual");
+	}
+	
+	/**
+	 * Exception handler
+	 * @param request
+	 * @param pnfe
+	 * @return
+	 */
+	@ExceptionHandler(ProductNotFoundException.class)
+	public ModelAndView handleError(HttpServletRequest request, ProductNotFoundException pnfe) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("invalidProductId", pnfe.getProductId());
+		mav.addObject("exception", pnfe);
+		mav.addObject("url", request.getRequestURL() + "?" + request.getQueryString());
+		mav.setViewName("productNotFound");
+		return mav;
 	}
 
 }
