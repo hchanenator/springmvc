@@ -35,6 +35,7 @@ public class Product {
 	
 	@NotNull(message="{min.product.unitsInStock.validation}")
 	@Min(value=0, message="{min.product.unitsInStock.validation}")
+	@Digits(integer=8, fraction=0, message="{digits.product.unitsInStock.validation}")
 	private long unitsInStock;
 	
 	private long unitsOnOrder;
