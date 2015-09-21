@@ -16,9 +16,10 @@
 	<div class="jumbotron">
 		<a href="<c:url value="/j_spring_security_logout" />"
 			class="btn btn-danger btn-mini pull-right">logout</a>
-			<div class="pull-right" style="padding-right:50px">
-			<a href="?language=en">English</a> | <a href="?language=fr_CA">French (CDN)</a>
-			</div>
+		<div class="pull-right" style="padding-right: 50px">
+			<a href="?language=en">English</a> | <a href="?language=fr_CA">French
+				(CDN)</a>
+		</div>
 		<div class="container">
 			<h1>Products</h1>
 			<p>Add products</p>
@@ -26,8 +27,9 @@
 	</div>
 	</section>
 	<section class="container"> <form:form
-		modelAttribute="newProduct" class="form-horizontal" enctype="multipart/form-data">
-		<form:errors path="" cssClass="alert alert-danger" element="div"/>
+		modelAttribute="newProduct" class="form-horizontal"
+		enctype="multipart/form-data">
+		<form:errors path="" cssClass="alert alert-danger" element="div" />
 		<fieldset>
 			<legend>Add new product</legend>
 			<div class="form-group">
@@ -36,7 +38,7 @@
 				<div class="col-lg-10">
 					<form:input id="productId" path="productId" type="text"
 						class="form:input-large" />
-						<form:errors path="productId" cssClass="text-danger" />
+					<form:errors path="productId" cssClass="text-danger" />
 				</div>
 			</div>
 
@@ -46,7 +48,7 @@
 				<div class="col-lg-10">
 					<form:input id="name" path="name" type="text"
 						class="form:input-large" />
-						<form:errors path="name" cssClass="text-danger"/>
+					<form:errors path="name" cssClass="text-danger" />
 				</div>
 			</div>
 
@@ -57,7 +59,7 @@
 					<div class="form:input-prepend">
 						<form:input id="unitPrice" path="unitPrice" type="text"
 							class="form:input-large" />
-							<form:errors path="unitPrice" cssClass="text-danger"/>
+						<form:errors path="unitPrice" cssClass="text-danger" />
 					</div>
 				</div>
 			</div>
@@ -85,6 +87,7 @@
 				<div class="col-lg-10">
 					<form:input id="category" path="category" type="text"
 						class="form:input-large" />
+					<form:errors path="category" cssClass="text-danger" />
 				</div>
 			</div>
 
@@ -94,6 +97,7 @@
 				<div class="col-lg-10">
 					<form:input id="unitsInStock" path="unitsInStock" type="text"
 						class="form:input-large" />
+					<form:errors path="unitsInStock" cssClass="text-danger" />
 				</div>
 			</div>
 
@@ -101,24 +105,29 @@
 				<label class="control-label col-lg-2" for="condition"><spring:message
 						code="addProduct.form.condition.label" /></label>
 				<div class="col-lg-10">
-					<form:radiobutton path="condition" value="New" /><spring:message code="addProduct.form.condition.new.label" />
-					<form:radiobutton path="condition" value="Old" /><spring:message code="addProduct.form.condition.old.label" />
-					<form:radiobutton path="condition" value="Refurbished" /><spring:message code="addProduct.form.condition.refurbished.label" />
+					<form:radiobutton path="condition" value="New" />
+					<spring:message code="addProduct.form.condition.new.label" />
+					<form:radiobutton path="condition" value="Old" />
+					<spring:message code="addProduct.form.condition.old.label" />
+					<form:radiobutton path="condition" value="Refurbished" />
+					<spring:message code="addProduct.form.condition.refurbished.label" />
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="control-label col-lg-2" for="productImage"><spring:message
 						code="addProduct.form.productImage.label" /> </label>
-						<form:input id="productImage" path="productImage" type="file" class="form:input-large"/>
+				<form:input id="productImage" path="productImage" type="file"
+					class="form:input-large" />
 			</div>
 
 			<div class="form-group">
 				<label class="control-label col-lg-2" for="productManual"><spring:message
 						code="addProduct.form.productManual.label" /> </label>
-						<form:input id="productManual" path="productManual" type="file" class="form:input-large"/>
+				<form:input id="productManual" path="productManual" type="file"
+					class="form:input-large" />
 			</div>
-			
+
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
 					<input type="submit" id="btnAdd" class="btn btn-primary"

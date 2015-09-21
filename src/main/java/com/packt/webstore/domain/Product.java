@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 @XmlRootElement
 public class Product {
 	
-	@Pattern(regexp="P[0-9]+", message="{pattern.product.productId.validation}")
+	@Pattern(regexp="P[0-9]{4}", message="{pattern.product.productId.validation}")
 	private String productId;
 	
 	@Size(min=4, max=50, message="{size.product.name.validation}")
@@ -24,13 +24,19 @@ public class Product {
 	
 	@Min(value=0, message="{min.product.unitPrice.validation}")
 	@Digits(integer=8, fraction=2, message="{digits.product.unitPrice.validation}")
-	@NotNull(message="{notNull.product.unitPrice.validation}")
+	@NotNull(message= "{notNull.product.unitPrice.validation}")
 	private BigDecimal unitPrice;
-	
 	private String description;
 	private String manufacturer;
+	
+	@NotNull(message="{notNull.product.category.validation}")
+	@Size(min=1, message="{notNull.product.category.validation}")
 	private String category;
+	
+	@NotNull(message="{min.product.unitsInStock.validation}")
+	@Min(value=0, message="{min.product.unitsInStock.validation}")
 	private long unitsInStock;
+	
 	private long unitsOnOrder;
 	private boolean discontinued;
 	private String condition;

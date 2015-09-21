@@ -63,11 +63,11 @@ public class ProductController {
 	@RequestMapping("/{category}")
 	public String getProductsByCategory(Model model, @PathVariable("category") String productCategory) {
 		List<Product> products = productService.getProductsByCategory(productCategory);
-		
+
 		if (null == products || products.isEmpty()) {
 			throw new NoProductFoundException();
 		}
-		
+
 		model.addAttribute("products", productService.getProductsByCategory(productCategory));
 		return "products";
 	}
@@ -103,9 +103,10 @@ public class ProductController {
 	}
 
 	/**
-	 * Example URL: 
-	 *   http://localhost:8080/webstore/products/pricefilter/price;low=150;high=400
-	 *   
+	 * Example URL:
+	 * http://localhost:8080/webstore/products/pricefilter/price;low=150;high=
+	 * 400
+	 * 
 	 * @param model
 	 * @param productCategory
 	 * @param filterParams
@@ -122,7 +123,8 @@ public class ProductController {
 
 	/**
 	 * Example URL:
-	 *   http://localhost:8080/webstore/products/filter/tablet/price;low=200;high=400
+	 * http://localhost:8080/webstore/products/filter/tablet/price;low=200;high=
+	 * 400
 	 * 
 	 * @param model
 	 * @param productCategory
@@ -142,10 +144,11 @@ public class ProductController {
 		return "products";
 
 	}
-	
+
 	/**
 	 * Example URL:
-	 *   http://localhost:8080/webstore/products/laptop/price;low=200;high=8000?manufacturer=apple
+	 * http://localhost:8080/webstore/products/laptop/price;low=200;high=8000?
+	 * manufacturer=apple
 	 * 
 	 * @param model
 	 * @param productCategory
@@ -169,8 +172,7 @@ public class ProductController {
 	}
 
 	/**
-	 * Example URL:
-	 *   http://localhost:8080/webstore/products/add
+	 * Example URL: http://localhost:8080/webstore/products/add
 	 * 
 	 * Called when a GET is requested
 	 * 
@@ -183,10 +185,9 @@ public class ProductController {
 		model.addAttribute("newProduct", newProduct);
 		return "addProduct";
 	}
-	
+
 	/**
-	 * Example URL:
-	 *   http://localhost:8080/webstore/products/add
+	 * Example URL: http://localhost:8080/webstore/products/add
 	 * 
 	 * Called when a POST is requested
 	 * 
@@ -194,55 +195,61 @@ public class ProductController {
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String processAddNewProductForm(@ModelAttribute("newProduct") @Valid Product newProduct, BindingResult result, HttpServletRequest request) {
+	public String processAddNewProductForm(@ModelAttribute("newProduct") @Valid Product newProduct, BindingResult result,
+			HttpServletRequest request) {
 		if (result.hasErrors()) {
 			return "addProduct";
 		}
-		
+
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
-			throw new RuntimeException("Attempting to bind disallowed fields: " + StringUtils.arrayToCommaDelimitedString(suppressedFields));
+			throw new RuntimeException("Attempting to bind disallowed fields: "
+					+ StringUtils.arrayToCommaDelimitedString(suppressedFields));
 		}
-		
+
 		MultipartFile productImage = newProduct.getProductImage();
 		MultipartFile productManual = newProduct.getProductManual();
-		
+
 		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
-		
+
 		if (productImage != null && !productImage.isEmpty()) {
 			try {
-				productImage.transferTo(new File(rootDirectory + "resources\\images\\" + newProduct.getProductId() + ".jpg"));
+				productImage.transferTo(
+						new File(rootDirectory + "resources\\images\\" + newProduct.getProductId() + ".jpg"));
 			} catch (Exception e) {
 				throw new RuntimeException("Product Image saving failed", e);
 			}
 		}
-		
+
 		if (productManual != null && !productManual.isEmpty()) {
 			try {
-				productManual.transferTo(new File(rootDirectory + "resources\\pdf\\" + newProduct.getProductId() + ".pdf"));
+				productManual
+						.transferTo(new File(rootDirectory + "resources\\pdf\\" + newProduct.getProductId() + ".pdf"));
 			} catch (Exception e) {
 				throw new RuntimeException("Product Manual saving failed", e);
 			}
 		}
-				
-		
+
 		productService.addProduct(newProduct);
 		return "redirect:/products";
 	}
-	
+
 	/**
-	 * For some security.  Defines which fields can be bound (whitelist), and which
-	 * ones cannot.
+	 * For some security. Defines which fields can be bound (whitelist), and
+	 * which ones cannot.
+	 * 
 	 * @param binder
 	 */
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder) {
 		binder.setDisallowedFields("unitsOnOrder", "discontinued");
-		binder.setAllowedFields("productId","name","unitPrice","description","manufacturer","category","unitsInStock", "condition", "productImage", "productManual");
+		binder.setAllowedFields("productId", "name", "unitPrice", "description", "manufacturer", "category",
+				"unitsInStock", "condition", "productImage", "productManual");
 	}
-	
+
 	/**
 	 * Exception handler
+	 * 
 	 * @param request
 	 * @param pnfe
 	 * @return
@@ -256,7 +263,7 @@ public class ProductController {
 		mav.setViewName("productNotFound");
 		return mav;
 	}
-	
+
 	@RequestMapping("/invalidPromoCode")
 	public String invalidPromoCode() {
 		return "invalidPromoCode";
