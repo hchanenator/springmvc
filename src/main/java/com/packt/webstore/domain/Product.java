@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.packt.webstore.validator.Category;
 import com.packt.webstore.validator.ProductId;
 
 @XmlRootElement
@@ -34,6 +35,7 @@ public class Product {
 	
 	@NotNull(message="{notNull.product.category.validation}")
 	@Size(min=1, message="{notNull.product.category.validation}")
+	@Category
 	private String category;
 	
 	@NotNull(message="{min.product.unitsInStock.validation}")
