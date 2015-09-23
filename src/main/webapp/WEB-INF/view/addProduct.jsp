@@ -119,6 +119,7 @@
 						code="addProduct.form.productImage.label" /> </label>
 				<form:input id="productImage" path="productImage" type="file"
 					class="form:input-large" />
+					<form:errors path="productImage" cssClass="text-danger" />
 			</div>
 
 			<div class="form-group">
