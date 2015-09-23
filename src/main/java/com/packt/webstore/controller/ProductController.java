@@ -31,11 +31,15 @@ import com.packt.webstore.domain.Product;
 import com.packt.webstore.exception.NoProductFoundException;
 import com.packt.webstore.exception.ProductNotFoundException;
 import com.packt.webstore.service.api.ProductService;
+import com.packt.webstore.validator.UnitsInStockValidator;
 
 @Controller
 @RequestMapping("/products")
 public class ProductController {
 
+	@Autowired
+	private UnitsInStockValidator unitsInsTockValidator;
+	
 	@Autowired
 	ProductService productService;
 
@@ -238,6 +242,8 @@ public class ProductController {
 	 * For some security. Defines which fields can be bound (whitelist), and
 	 * which ones cannot.
 	 * 
+	 * Also adds validation that spans more than one field
+	 * 
 	 * @param binder
 	 */
 	@InitBinder
@@ -245,6 +251,8 @@ public class ProductController {
 		binder.setDisallowedFields("unitsOnOrder", "discontinued");
 		binder.setAllowedFields("productId", "name", "unitPrice", "description", "manufacturer", "category",
 				"unitsInStock", "condition", "productImage", "productManual");
+		
+		binder.addValidators(unitsInsTockValidator);
 	}
 
 	/**
