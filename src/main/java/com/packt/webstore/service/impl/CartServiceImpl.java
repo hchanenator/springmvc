@@ -4,6 +4,7 @@
 package com.packt.webstore.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.packt.webstore.domain.Cart;
 import com.packt.webstore.domain.repository.api.CartRepository;
@@ -13,6 +14,7 @@ import com.packt.webstore.service.api.CartService;
  * @author herb
  *
  */
+@Service
 public class CartServiceImpl implements CartService {
 	
 	@Autowired
