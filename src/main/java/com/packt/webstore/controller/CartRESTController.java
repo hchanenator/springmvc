@@ -1,4 +1,5 @@
 package com.packt.webstore.controller;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,7 @@ public class CartRESTController {
 
 	@RequestMapping(value = "/add/{productId}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void addItem(String productId, HttpServletRequest request) {
+	public void addItem(@PathVariable(value = "productId") String productId, HttpServletRequest request) {
 
 		String sessionId = request.getSession(true).getId();
 		Cart cart = cartService.read(sessionId);
@@ -83,7 +84,7 @@ public class CartRESTController {
 
 	@RequestMapping(value = "/remove/{productId}", method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void removeItem(String productId, HttpServletRequest request) {
+	public void removeItem(@PathVariable(value = "productId") String productId, HttpServletRequest request) {
 
 		String sessionId = request.getSession(true).getId();
 		Cart cart = cartService.read(sessionId);
