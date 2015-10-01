@@ -1,5 +1,6 @@
 package com.packt.webstore.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.validation.constraints.Digits;
@@ -17,47 +18,51 @@ import com.packt.webstore.validator.Category;
 import com.packt.webstore.validator.ProductId;
 
 @XmlRootElement
-public class Product {
-	
-	@Pattern(regexp="P[0-9]{4}", message="{pattern.product.productId.validation}")
+public class Product implements Serializable {
+
+	/**
+	 * 
+     */
+	private static final long serialVersionUID = 4923738817964856830L;
+
+	@Pattern(regexp = "P[0-9]{4}", message = "{pattern.product.productId.validation}")
 	@ProductId
 	private String productId;
-	
-	@Size(min=4, max=50, message="{size.product.name.validation}")
+
+	@Size(min = 4, max = 50, message = "{size.product.name.validation}")
 	private String name;
-	
-	@Min(value=0, message="{min.product.unitPrice.validation}")
-	@Digits(integer=8, fraction=2, message="{digits.product.unitPrice.validation}")
-	@NotNull(message= "{notNull.product.unitPrice.validation}")
+
+	@Min(value = 0, message = "{min.product.unitPrice.validation}")
+	@Digits(integer = 8, fraction = 2, message = "{digits.product.unitPrice.validation}")
+	@NotNull(message = "{notNull.product.unitPrice.validation}")
 	private BigDecimal unitPrice;
 	private String description;
 	private String manufacturer;
-	
-	@NotNull(message="{notNull.product.category.validation}")
-	@Size(min=1, message="{notNull.product.category.validation}")
+
+	@NotNull(message = "{notNull.product.category.validation}")
+	@Size(min = 1, message = "{notNull.product.category.validation}")
 	@Category
 	private String category;
-	
-	@NotNull(message="{min.product.unitsInStock.validation}")
-	@Min(value=0, message="{min.product.unitsInStock.validation}")
-	@Digits(integer=8, fraction=0, message="{digits.product.unitsInStock.validation}")
+
+	@NotNull(message = "{min.product.unitsInStock.validation}")
+	@Min(value = 0, message = "{min.product.unitsInStock.validation}")
+	@Digits(integer = 8, fraction = 0, message = "{digits.product.unitsInStock.validation}")
 	private long unitsInStock;
-	
+
 	private long unitsOnOrder;
 	private boolean discontinued;
 	private String condition;
-	
+
 	@JsonIgnore
 	private MultipartFile productImage;
-	
+
 	@JsonIgnore
 	private MultipartFile productManual;
-
 
 	public Product() {
 		super();
 	}
-	
+
 	public Product(String productId, String name, BigDecimal unitPrice) {
 		this.productId = productId;
 		this.name = name;
@@ -72,7 +77,8 @@ public class Product {
 	}
 
 	/**
-	 * @param productId the productId to set
+	 * @param productId
+	 *            the productId to set
 	 */
 	public void setProductId(String productId) {
 		this.productId = productId;
@@ -86,7 +92,8 @@ public class Product {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -100,7 +107,8 @@ public class Product {
 	}
 
 	/**
-	 * @param unitPrice the unitPrice to set
+	 * @param unitPrice
+	 *            the unitPrice to set
 	 */
 	public void setUnitPrice(BigDecimal unitPrice) {
 		this.unitPrice = unitPrice;
@@ -114,7 +122,8 @@ public class Product {
 	}
 
 	/**
-	 * @param description the description to set
+	 * @param description
+	 *            the description to set
 	 */
 	public void setDescription(String description) {
 		this.description = description;
@@ -128,7 +137,8 @@ public class Product {
 	}
 
 	/**
-	 * @param manfacturer the manfacturer to set
+	 * @param manfacturer
+	 *            the manfacturer to set
 	 */
 	public void setManufacturer(String manfacturer) {
 		this.manufacturer = manfacturer;
@@ -142,7 +152,8 @@ public class Product {
 	}
 
 	/**
-	 * @param category the category to set
+	 * @param category
+	 *            the category to set
 	 */
 	public void setCategory(String category) {
 		this.category = category;
@@ -156,7 +167,8 @@ public class Product {
 	}
 
 	/**
-	 * @param unitsInStock the unitsInStock to set
+	 * @param unitsInStock
+	 *            the unitsInStock to set
 	 */
 	public void setUnitsInStock(long unitsInStock) {
 		this.unitsInStock = unitsInStock;
@@ -170,7 +182,8 @@ public class Product {
 	}
 
 	/**
-	 * @param unitsOnOrder the unitsOnOrder to set
+	 * @param unitsOnOrder
+	 *            the unitsOnOrder to set
 	 */
 	public void setUnitsOnOrder(long unitsOnOrder) {
 		this.unitsOnOrder = unitsOnOrder;
@@ -184,7 +197,8 @@ public class Product {
 	}
 
 	/**
-	 * @param active the active to set
+	 * @param active
+	 *            the active to set
 	 */
 	public void setDiscontinued(boolean active) {
 		this.discontinued = active;
@@ -198,12 +212,13 @@ public class Product {
 	}
 
 	/**
-	 * @param condition the condition to set
+	 * @param condition
+	 *            the condition to set
 	 */
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
-	
+
 	@XmlTransient
 	public MultipartFile getProductImage() {
 		return productImage;
@@ -212,7 +227,7 @@ public class Product {
 	public void setProductImage(MultipartFile productImage) {
 		this.productImage = productImage;
 	}
-	
+
 	@XmlTransient
 	public MultipartFile getProductManual() {
 		return productManual;
@@ -222,8 +237,9 @@ public class Product {
 		this.productManual = productManual;
 	}
 
-	
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -231,25 +247,21 @@ public class Product {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (discontinued ? 1231 : 1237);
-		result = prime * result
-				+ ((category == null) ? 0 : category.hashCode());
-		result = prime * result
-				+ ((condition == null) ? 0 : condition.hashCode());
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
-		result = prime * result
-				+ ((manufacturer == null) ? 0 : manufacturer.hashCode());
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
+		result = prime * result + ((condition == null) ? 0 : condition.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((manufacturer == null) ? 0 : manufacturer.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((productId == null) ? 0 : productId.hashCode());
-		result = prime * result
-				+ ((unitPrice == null) ? 0 : unitPrice.hashCode());
+		result = prime * result + ((productId == null) ? 0 : productId.hashCode());
+		result = prime * result + ((unitPrice == null) ? 0 : unitPrice.hashCode());
 		result = prime * result + (int) (unitsInStock ^ (unitsInStock >>> 32));
 		result = prime * result + (int) (unitsOnOrder ^ (unitsOnOrder >>> 32));
 		return result;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -305,14 +317,14 @@ public class Product {
 		return true;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", name=" + name + "]";
 	}
-	
-	
 
 }
