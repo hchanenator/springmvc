@@ -1,16 +1,30 @@
 package com.packt.webstore.domain;
 
-public class Customer {
+import java.io.Serializable;
+
+public class Customer implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -889037691219235457L;
 	
 	private String customerId;
 	private String firstName;
 	private String lastName;
 	private int numOfOrders;
+	private Address address;
+	private String phoneNumber;
+	
+	public Customer() {
+		address = new Address();
+	}
 	
 	public Customer(String customerId, String firstName, String lastName) {
+		this();
 		this.customerId = customerId;
 		this.firstName = firstName;
-		this.lastName = lastName;
+		this.lastName = lastName;		
 	}
 
 	public String getCustomerId() {
@@ -43,6 +57,22 @@ public class Customer {
 
 	public void setNumOfOrders(int numOfOrders) {
 		this.numOfOrders = numOfOrders;
+	}
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	@Override
