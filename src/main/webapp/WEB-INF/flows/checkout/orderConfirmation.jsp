@@ -39,10 +39,10 @@
 						<div class="col-xs-6 col-sm-6 col-md-6">
 							<address>
 								<strong>Shipping Address</strong> <br>
-								${order.shippingDetail.name}<br>
+								${order.shippingDetail.firstName} ${order.shippingDetail.lastName}<br>
 								${order.shippingDetail.shippingAddress.doorNo},${order.shippingDetail.shippingAddress.streetName}
 								<br>
-								${order.shippingDetail.shippingAddress.areaName},${order.shippingDetail.shippingAddress.state}
+								${order.shippingDetail.shippingAddress.city},${order.shippingDetail.shippingAddress.state}
 								<br>
 								${order.shippingDetail.shippingAddress.country},${order.shippingDetail.shippingAddress.zipCode}
 								<br>
@@ -59,13 +59,13 @@
 						<div class="col-xs-6 col-sm-6 col-md-6">
 							<address>
 								<strong>Billing Address</strong> <br>
-								${order.customer.name}<br>
+								${order.customer.firstName} ${order.customer.lastName}<br>
 								${order.customer.billingAddress.doorNo},${order.customer.billingAddress.streetName}
 								<br>
-								${order.customer.billingAddress.areaName},${order.customer.billingAddress.state}
+								${order.customer.billingAddress.city},${order.customer.billingAddress.state}
 								<br>
 								${order.customer.billingAddress.country},${order.customer.billingAddress.zipCode}
-								<br> <abbr title="Phone">P:</abbr>
+								<br> <abbr title="Phone">Phone: </abbr>
 								${order.customer.phoneNumber}
 							</address>
 						</div>
