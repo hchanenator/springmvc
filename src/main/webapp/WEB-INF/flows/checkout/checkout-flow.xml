@@ -48,7 +48,7 @@ http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 	<end-state id="cancelCheckout" view="checkOutCancelled.jsp" />
 
 	<global-transitions>
-		<transition on="cancel" to="endState" />
+		<transition on="cancel" to="cancelCheckout" />
 	</global-transitions>
 
 </flow>
