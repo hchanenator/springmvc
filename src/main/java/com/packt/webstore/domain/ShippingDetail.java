@@ -19,7 +19,8 @@ public class ShippingDetail implements Serializable {
 	 */
 	private static final long serialVersionUID = -1384374404218873836L;
 
-	private String name;
+	private String firstName;
+	private String lastName;
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date shippingDate;
@@ -30,12 +31,16 @@ public class ShippingDetail implements Serializable {
 		this.shippingAddress = new Address();
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLastName(String name) {
+		this.firstName = name;
+	}
+
+	public String getLastName() {
+		return lastName;
 	}
 
 	public Date getShippingDate() {
@@ -58,7 +63,8 @@ public class ShippingDetail implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + ((shippingAddress == null) ? 0 : shippingAddress.hashCode());
 		result = prime * result + ((shippingDate == null) ? 0 : shippingDate.hashCode());
 		return result;
@@ -73,10 +79,15 @@ public class ShippingDetail implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ShippingDetail other = (ShippingDetail) obj;
-		if (name == null) {
-			if (other.name != null)
+		if (firstName == null) {
+			if (other.firstName != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
 			return false;
 		if (shippingAddress == null) {
 			if (other.shippingAddress != null)
@@ -93,7 +104,7 @@ public class ShippingDetail implements Serializable {
 
 	@Override
 	public String toString() {
-		return "ShippingDetail [name=" + name + ", shippingDate=" + shippingDate + ", shippingAddress="
+		return "ShippingDetail [name=" + firstName + " " + lastName + ", shippingDate=" + shippingDate + ", shippingAddress="
 				+ shippingAddress + "]";
 	}
 
