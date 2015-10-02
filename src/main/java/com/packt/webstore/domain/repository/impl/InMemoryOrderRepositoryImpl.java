@@ -6,6 +6,8 @@ package com.packt.webstore.domain.repository.impl;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.packt.webstore.domain.Order;
 import com.packt.webstore.domain.repository.api.OrderRepository;
 
@@ -13,6 +15,7 @@ import com.packt.webstore.domain.repository.api.OrderRepository;
  * @author herb
  *
  */
+@Repository
 public class InMemoryOrderRepositoryImpl implements OrderRepository {
 	
 	private Map<Long, Order> listOfOrders;

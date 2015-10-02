@@ -17,7 +17,7 @@ public class Address implements Serializable {
 	private static final long serialVersionUID = -143564189528503828L;
 	
 	private String doorNo;
-	private String street;
+	private String streetName;
 	private String city;
 	private String state;
 	private String country;
@@ -31,12 +31,12 @@ public class Address implements Serializable {
 		this.doorNo = doorNo;
 	}
 
-	public String getStreet() {
-		return street;
+	public String getStreetName() {
+		return streetName;
 	}
 
-	public void setStreet(String street) {
-		this.street = street;
+	public void setStreetName(String street) {
+		this.streetName = street;
 	}
 
 	public String getCity() {
@@ -79,7 +79,7 @@ public class Address implements Serializable {
 		result = prime * result + ((country == null) ? 0 : country.hashCode());
 		result = prime * result + ((doorNo == null) ? 0 : doorNo.hashCode());
 		result = prime * result + ((state == null) ? 0 : state.hashCode());
-		result = prime * result + ((street == null) ? 0 : street.hashCode());
+		result = prime * result + ((streetName == null) ? 0 : streetName.hashCode());
 		result = prime * result + ((zipCode == null) ? 0 : zipCode.hashCode());
 		return result;
 	}
@@ -113,10 +113,10 @@ public class Address implements Serializable {
 				return false;
 		} else if (!state.equals(other.state))
 			return false;
-		if (street == null) {
-			if (other.street != null)
+		if (streetName == null) {
+			if (other.streetName != null)
 				return false;
-		} else if (!street.equals(other.street))
+		} else if (!streetName.equals(other.streetName))
 			return false;
 		if (zipCode == null) {
 			if (other.zipCode != null)
@@ -128,7 +128,7 @@ public class Address implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Address [doorNo=" + doorNo + ", street=" + street + ", city=" + city + ", state=" + state + ", country="
+		return "Address [doorNo=" + doorNo + ", street=" + streetName + ", city=" + city + ", state=" + state + ", country="
 				+ country + ", zipCode=" + zipCode + "]";
 	}
 

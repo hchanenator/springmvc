@@ -13,11 +13,11 @@ public class Customer implements Serializable {
 	private String firstName;
 	private String lastName;
 	private int numOfOrders;
-	private Address address;
+	private Address billingAddress;
 	private String phoneNumber;
 	
 	public Customer() {
-		address = new Address();
+		billingAddress = new Address();
 	}
 	
 	public Customer(String customerId, String firstName, String lastName) {
@@ -59,12 +59,12 @@ public class Customer implements Serializable {
 		this.numOfOrders = numOfOrders;
 	}
 	
-	public Address getAddress() {
-		return address;
+	public Address getBillingAddress() {
+		return billingAddress;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setBillingAddress(Address address) {
+		this.billingAddress = address;
 	}
 
 	public String getPhoneNumber() {

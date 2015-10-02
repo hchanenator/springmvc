@@ -36,9 +36,17 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="name">Name</label>
+				<label class="control-label col-lg-2" for="firstName">First Name</label>
 				<div class="col-lg-10">
-					<form:input id="name" path="name" type="text"
+					<form:input id="firstName" path="firstName" type="text"
+						class="form:input-large" />
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="control-label col-lg-2" for="lastName">Last Name</label>
+				<div class="col-lg-10">
+					<form:input id="lastName" path="lastName" type="text"
 						class="form:input-large" />
 				</div>
 			</div>
@@ -61,10 +69,9 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="areaName">Area
-					Name</label>
+				<label class="control-label col-lg-2" for="city">City</label>
 				<div class="col-lg-10">
-					<form:input id="areaName" path="billingAddress.areaName"
+					<form:input id="city" path="billingAddress.city"
 						type="text" class="form:input-large" />
 				</div>
 			</div>
@@ -78,7 +85,7 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="country">country</label>
+				<label class="control-label col-lg-2" for="country">Country</label>
 				<div class="col-lg-10">
 					<form:input id="country" path="billingAddress.country" type="text"
 						class="form:input-large" />
