@@ -27,8 +27,8 @@
 			<legend>Customer Details</legend>
 
 			<div class="form-group">
-				<label class="control-label col-lg-2 col-lg-2" for="customerId" />Customer
-				Id</label>
+				<label class="control-label col-lg-2 col-lg-2" for="customerId" /><spring:message code="addCustomer.form.customerId.label" /></label>
+
 				<div class="col-lg-10">
 					<form:input id="customerId" path="customerId" type="text"
 						class="form:input-large" />
@@ -36,15 +36,17 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="firstName">First Name</label>
+				<label class="control-label col-lg-2" for="firstName"><spring:message
+						code="addCustomer.form.customerFirstName.label" /></label>
 				<div class="col-lg-10">
 					<form:input id="firstName" path="firstName" type="text"
 						class="form:input-large" />
 				</div>
 			</div>
-			
+
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="lastName">Last Name</label>
+				<label class="control-label col-lg-2" for="lastName"><spring:message
+						code="addCustomer.form.customerLastName.label" /></label>
 				<div class="col-lg-10">
 					<form:input id="lastName" path="lastName" type="text"
 						class="form:input-large" />
@@ -52,7 +54,8 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="doorNo">Door No</label>
+				<label class="control-label col-lg-2" for="doorNo"><spring:message
+						code="addCustomer.form.customerDoorNo.label" /></label>
 				<div class="col-lg-10">
 					<form:input id="doorNo" path="billingAddress.doorNo" type="text"
 						class="form:input-large" />
@@ -60,8 +63,8 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="streetName">Street
-					Name</label>
+				<label class="control-label col-lg-2" for="streetName"><spring:message
+						code="addCustomer.form.customerStreetName.label" /></label>
 				<div class="col-lg-10">
 					<form:input id="streetName" path="billingAddress.streetName."
 						type="text" class="form:input-large" />
@@ -69,15 +72,17 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="city">City</label>
+				<label class="control-label col-lg-2" for="city"><spring:message
+						code="addCustomer.form.customerCityName.label" /></label>
 				<div class="col-lg-10">
-					<form:input id="city" path="billingAddress.city"
-						type="text" class="form:input-large" />
+					<form:input id="city" path="billingAddress.city" type="text"
+						class="form:input-large" />
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="state">State</label>
+				<label class="control-label col-lg-2" for="state"><spring:message
+						code="addCustomer.form.customerStateName.label" /></label>
 				<div class="col-lg-10">
 					<form:input id="state" path="billingAddress.state" type="text"
 						class="form:input-large" />
@@ -85,7 +90,8 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="country">Country</label>
+				<label class="control-label col-lg-2" for="country"><spring:message
+						code="addCustomer.form.customerCountryName.label" /></label>
 				<div class="col-lg-10">
 					<form:input id="country" path="billingAddress.country" type="text"
 						class="form:input-large" />
@@ -93,7 +99,8 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="zipCode">Zip Code</label>
+				<label class="control-label col-lg-2" for="zipCode"><spring:message
+						code="addCustomer.form.customerZipCode.label" /></label>
 				<div class="col-lg-10">
 					<form:input id="zipCode" path="billingAddress.zipCode" type="text"
 						class="form:input-large" />
@@ -101,8 +108,8 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-2" for="phoneNumber">Phone
-					Number</label>
+				<label class="control-label col-lg-2" for="phoneNumber"><spring:message
+						code="addCustomer.form.customerPhoneNumber.label" /></label>
 				<div class="col-lg-10">
 					<form:input id="phoneNumber" path="phoneNumber" type="text"
 						class="form:input-large" />

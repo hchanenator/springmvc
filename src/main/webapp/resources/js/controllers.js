@@ -39,3 +39,20 @@ cartApp.controller('cartCtrl',  function ($scope, $http) {
     });
   };
 });
+
+var customerApp = angular.module('customerApp', []);
+
+customerApp.controller('customerCtrl', function ($scope, $http) {
+	
+	$scope.refreshCustomer = function(customerId) {
+		$http.get('/webstore/rest/custoemr/'+$scope.customerId)
+		.success(function(data) {
+			$scope.cart = date;
+		});
+	};
+	
+	$scope.initCustId = function(customerId) {
+		$scope.customerId=customerId;
+		$scope.refreshCustomer($scope.customerId);
+	}
+});
