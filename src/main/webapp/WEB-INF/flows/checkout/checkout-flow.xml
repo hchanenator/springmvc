@@ -5,6 +5,7 @@
 http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
 	<var name="order" class="com.packt.webstore.domain.Order" />
+	<var name="customer" class="com.packt.webstore.domain.Customer" />
 
 	<action-state id="addCartToOrder">
 		<evaluate expression="cartServiceImpl.validate(requestParameters.cartId)"
@@ -12,6 +13,16 @@ http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 		<transition to="InvalidCartWarning"
 			on-exception="com.packt.webstore.exception.InvalidCartException" />
 		<transition to="collectCustomerInfo" />
+	</action-state>
+
+	<view-state id="findCustomerInfo" view="findCustomerInfo.jsp"
+		model="customer">
+		<transition on="lookupCustomer" to="searchCustomerInfo" />
+	</view-state>
+
+	<action-state id="searchCustomerInfo">
+		<evaluate expression="customerServiceImpl.findCustomer(customer.customerId)" result="customer"/>
+		<transition to="collectCustomerInfo"/>
 	</action-state>
 
 	<view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp"
