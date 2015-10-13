@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -44,9 +45,7 @@
 
 			<div class="form-group">
 				<div class="col-lg-offset-2 col-lg-10">
-					<input type="submit" id="btnAdd" class="btn btn-primary"
-						value="<spring:message code="findCustomer.find.label" />"
-						name="_eventId_lookupCcustomer" />
+					<a href="<spring:url value="/customer?customerId=${customerId}" />" class="btn btn-primary"> <spring:message code="findCustomer.find.label" /> </a>						
 					<button id="btnCancel" class="btn btn-default"
 						name="_eventId_cancel">Cancel</button>
 				</div>

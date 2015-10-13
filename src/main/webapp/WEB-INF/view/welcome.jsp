@@ -21,8 +21,7 @@
 	</section>
 	<section>
 	<ul>
-		<li><a href="<spring:url value="/searchCustomer" />">Search
-				Customer</a>
+		<li><a href="<spring:url value="/searchCustomer" />">Search	Customer</a>
 	</ul>
 	</section>
 </body>

@@ -6,16 +6,20 @@ http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
 	<var name="customer" class="com.packt.webstore.domain.Customer" />
 
-	<view-state id="findCustomerInfo" view="findCustomerInfo.jsp"
-		model="customer">
-		<transition on="lookupCustomer" to="searchCustomerInfo" />
-	</view-state>
+
 
 	<action-state id="searchCustomerInfo">
 		<evaluate expression="customerServiceImpl.findCustomer(customer.customerId)" result="customer"/>
 		<transition to="showCustomerInfo"/>
+		<transition to="CustomerNotFoundWarning"
+			on-exception="com.packt.webstore.exception.CustomerNotFoundException" />
 	</action-state>
 
+	<view-state id="CustomerNotFoundWarning" view="findCustomerInfo.jsp"
+		model="customer">
+		<transition on="lookupCustomer" to="searchCustomerInfo" />
+	</view-state>
+	
 	<view-state id="showCustomerInfo">
 	<transition to="endState" />
 	</view-state>

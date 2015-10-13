@@ -23,6 +23,7 @@ public class CustomerController {
 	
 	@RequestMapping("/searchCustomer")
 	public String findCustomer(Model model) {
+		model.addAttribute("customer", new Customer());
 		return "searchCustomer";
 	}
 
