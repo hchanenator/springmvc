@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+	<var name="customer" class="com.packt.webstore.domain.Customer" />
+
+	<view-state id="findCustomerInfo" view="findCustomerInfo.jsp"
+		model="customer">
+		<transition on="lookupCustomer" to="searchCustomerInfo" />
+	</view-state>
+
+	<action-state id="searchCustomerInfo">
+		<evaluate expression="customerServiceImpl.findCustomer(customer.customerId)" result="customer"/>
+		<transition to="showCustomerInfo"/>
+	</action-state>
+
+	<view-state id="showCustomerInfo">
+	<transition to="endState" />
+	</view-state>
+	
+	<end-state id="endState" />
+
+	<end-state id="cancelCheckout" view="checkOutCancelled.jsp" />
+
+	<global-transitions>
+		<transition on="cancel" to="cancelCheckout" />
+	</global-transitions>
+
+</flow>

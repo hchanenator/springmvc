@@ -3,8 +3,10 @@ package com.packt.webstore.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.packt.webstore.domain.Customer;
 import com.packt.webstore.service.api.CustomerService;
 
 @Controller
@@ -17,6 +19,11 @@ public class CustomerController {
 	public String list(Model model) {
 		model.addAttribute("customers", customerService.getAllCustomers());
 		return "customers";
+	}
+	
+	@RequestMapping("/searchCustomer")
+	public String findCustomer(Model model) {
+		return "searchCustomer";
 	}
 
 }

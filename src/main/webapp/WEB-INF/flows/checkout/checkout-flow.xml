@@ -15,16 +15,6 @@ http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 		<transition to="collectCustomerInfo" />
 	</action-state>
 
-	<view-state id="findCustomerInfo" view="findCustomerInfo.jsp"
-		model="customer">
-		<transition on="lookupCustomer" to="searchCustomerInfo" />
-	</view-state>
-
-	<action-state id="searchCustomerInfo">
-		<evaluate expression="customerServiceImpl.findCustomer(customer.customerId)" result="customer"/>
-		<transition to="collectCustomerInfo"/>
-	</action-state>
-
 	<view-state id="collectCustomerInfo" view="collectCustomerInfo.jsp"
 		model="order">
 		<transition on="customerInfoCollected" to="collectShippingDetail" />

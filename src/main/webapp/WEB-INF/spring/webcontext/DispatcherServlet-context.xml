@@ -31,6 +31,8 @@
 		base-path="/WEB-INF/flows">
 		<webflow-config:flow-location path="/checkout/checkout-flow.xml"
 			id="checkout" />
+		<webflow-config:flow-location path="/customer/customer-flow.xml"
+			id="customer" />
 	</webflow-config:flow-registry>
 
 	<context:component-scan base-package="com.packt.webstore" />

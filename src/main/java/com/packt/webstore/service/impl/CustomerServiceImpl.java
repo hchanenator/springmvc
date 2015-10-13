@@ -34,10 +34,6 @@ public class CustomerServiceImpl implements CustomerService {
 			}
 		}
 		
-//		if (null == foundCustomer) {
-//			throw new CustomerNotFoundException(customerId);
-//		}
-//		
 		return foundCustomer;
 	}
 
